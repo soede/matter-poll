@@ -55,12 +55,12 @@
    ```
 
 ## Основные команды
- 1️⃣ ``/guide`` – посмотреть все команды\
+ 1️⃣ ``/guide`` – посмотреть все команды
 
- 2️⃣``/create Ok? | var1 | var2 | var3``, где ``Ok?`` это любой вопрос по твоему усмотрению, 
+ 2️⃣``/create Ok? | var1 | var2 | var3`` – создать опрос, где ``Ok?`` это любой вопрос по твоему усмотрению, 
  ``var1, var2...`` – варианты ответов
 
- 3️⃣``/vote PollID 1``, где PollID – полученный ID в ``/create`` (в след. примерах тоже)
+ 3️⃣``/vote PollID 1``, где PollID – проголосовать, полученный ID в ``/create`` (в след. примерах тоже)
 
  4️⃣``/results PollID`` – посмотреть результаты опроса
 
@@ -76,9 +76,7 @@
 ## Сервисы
 1. **Бот на Go (golang:alpine)** 
    - Работает на порту 8080.
-2. **Tarantool (tarantool/tarantool:3.1.0)**
-   - Написан на Go
-   - Использует библиотеку ping.
+2. **Tarantool (tarantool/tarantool:3.1.0)** 
    - Работает на порту 3031.
 3. **Mattermost** \
    https://docs.mattermost.com/install/install-docker.html)
