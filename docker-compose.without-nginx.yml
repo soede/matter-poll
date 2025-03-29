@@ -1,0 +1,35 @@
+services:
+  mattermost:
+    ports:
+      - ${APP_PORT}:8065
+      - ${CALLS_PORT}:${CALLS_PORT}/udp
+      - ${CALLS_PORT}:${CALLS_PORT}/tcp
+    environment:
+      MM_SERVICESETTINGS_ALLOWCORSFROM: "*"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8065" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+  mattermost-bot:
+    container_name: mattermost-bot
+    build: ../votty
+    restart: always
+    depends_on:
+      mattermost:
+        condition: service_healthy
+    environment:
+      - MATTERMOST_URL=${MATTERMOST_URL}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - TARANTOOL_HOST=${TARANTOOL_HOST}
+      - TARANTOOL_PORT=${TARANTOOL_PORT}
+      - TARANTOOL_USER=${TARANTOOL_USER}
+  tarantool:
+    build: ../tarantool
+    container_name: tarantool
+    ports:
+      - "3301:3301"
+
+networks:
+  default:
+    name: mattermost
